@@ -59,10 +59,7 @@ export default function App() {
       const clientId = process.env.REACT_APP_NAVER_CLIENT_ID;
       const clientSecret = process.env.REACT_APP_NAVER_CLIENT_SECRET;
       const keyword = NEWS_KEYWORDS[Math.floor(Math.random() * NEWS_KEYWORDS.length)];
-      const res = await fetch(
-        `https://openapi.naver.com/v1/search/news.json?query=${encodeURIComponent(keyword)}&display=10&sort=date`,
-        { headers: { "X-Naver-Client-Id": clientId, "X-Naver-Client-Secret": clientSecret } }
-      );
+      const res = await fetch(`/api/news`);
       const data = await res.json();
       if (data.items) {
         const newItems = data.items.map((item, i) => ({
